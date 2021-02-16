@@ -46,9 +46,10 @@ interface ListenerOptions {
 ```
 
 ### Add event listener
-
 #### `.on(typeSet: string, handle, option?: ListenerOptions)`
 #### `.on(typeSet: string, factorSelector, handle, option?: ListenerOptions)`
+
+### Remove event listener
 #### `.off(typeSet?: string, factorSelector?, handle?, option?: ListenerOptions)`
 
 ## Manipulations

@@ -28,7 +28,7 @@ $('div', { id: 'target', class: 'bg:blue f:white' }, [
 
 ### Assign element utilities
 ```ts
-$(document.body)
+const $body = $(document.body)
     .addClass('bg:red')
     .on('click', (event) => {
         console.log(event);

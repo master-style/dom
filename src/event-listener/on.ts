@@ -1,12 +1,8 @@
 import { ListenerOptions } from './listener-options.interface';
 import { off } from './off';
 
-export function on(
-    typeSet: string,
-    factorSelector,
-    handle?,
-    option?: ListenerOptions
-) {
+export function on(typeSet: string, handle, option?: ListenerOptions);
+export function on(typeSet: string, factorSelector, handle, option?: ListenerOptions) {
     const target = this;
     if (typeof factorSelector === 'function') {
         option = handle;

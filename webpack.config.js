@@ -4,7 +4,6 @@ const Webpack = require('webpack');
 const glob = require('globby');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const package = require('./package.json');
 
 module.exports = env => {
     const entryGlob = [
@@ -18,7 +17,6 @@ module.exports = env => {
             entrypoint[filename] = [path.resolve(eachPath)];
             return entrypoint;
         }, {}),
-        externals: Object.keys(package.dependencies),
         mode: 'production',
         resolve: {
             extensions: ['.js', '.ts'],

@@ -16,6 +16,8 @@ npm install @master/dom
 
 ```tsx
 import { $ } from '@master/dom';
+// or scope as 'Master' prevent from conflicting with jquery
+import { $ as Master } from '@master/dom';
 ```
 
 ### Create element and assign element utilities

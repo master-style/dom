@@ -48,11 +48,25 @@ interface ListenerOptions {
 ### `.on(typeSet: string, handle, option?: ListenerOptions)`
 ### `.on(typeSet: string, factorSelector, handle, option?: ListenerOptions)`
 ### `.off(typeSet?: string, factorSelector?, handle?, option?: ListenerOptions)`
+
+## Manipulations
 ### `.attr(): object`
 Getting all of attributes
-### `.attr(key): any`
+### `.attr(key: string): any`
 Getting value by attribute key
-### `.attr(key, value)`
+### `.attr(key: string, value)`
 Setting value by attribute key
 ### `.attr(object)`
 Setting multiple attributes by object
+### `.toggleAttr(key: string, state?: boolean)`
+### `.css(): object`
+Getting all of compulted styles
+### `.css(key: string): any`
+Getting compulted style by key
+### `.css(key: string, value)`
+Setting style by key
+### `.css(object)`
+Setting multiple styles by object
+### `.addClass(value: string)`
+### `.rmClass(value: string)`
+### `.toggleClass(key: string, state?: boolean)`

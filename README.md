@@ -1,27 +1,83 @@
-# Dom
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+<a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+</a>
 
-## Development server
+# Master DOM
+### A lightweight DOM manipulation and event handling utilities.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+&nbsp;
 
-## Code scaffolding
+```bash
+npm install @master/dom
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+```tsx
+import { $ } from '@master/dom';
+// or scope as 'Master' prevent from conflicting with jquery
+import { $ as Master } from '@master/dom';
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Create element and assign element utilities
+```ts
+$('div', { id: 'target', class: 'bg:blue f:white' }, [
+    $('span', { class: 'xxx' }),
+    $('span', { class: 'xxx' })
+])
+```
 
-## Running unit tests
+### Assign element utilities
+```ts
+const $body = $(document.body)
+    .addClass('bg:red')
+    .on('click', (event) => {
+        console.log(event);
+    }, { passive: true });
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Event Listener
+```ts
+interface ListenerOptions {
+    capture?: boolean;
+    once?: boolean;
+    passive?: boolean;
+    id?: any;
+}
+```
 
-## Running end-to-end tests
+### Add event listener
+#### `.on(typeSet: string, handle, option?: ListenerOptions)`
+#### `.on(typeSet: string, factorSelector, handle, option?: ListenerOptions)`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Remove event listener
+#### `.off(typeSet?: string, factorSelector?, handle?, option?: ListenerOptions)`
 
-## Further help
+## Manipulations
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Attribute
+#### `.attr(): object`
+Getting all of attributes
+#### `.attr(key: string): any`
+Getting value by attribute key
+#### `.attr(key: string, value)`
+Setting value by attribute key
+#### `.attr(object)`
+Setting multiple attributes by object
+#### `.toggleAttr(key: string, state?: boolean)`
+
+### Style
+#### `.css(): object`
+Getting all of compulted styles
+#### `.css(key: string): any`
+Getting compulted style by key
+#### `.css(key: string, value)`
+Setting style by key
+#### `.css(object)`
+Setting multiple styles by object
+
+### Class
+#### `.addClass(value: string)`
+#### `.rmClass(value: string)`
+#### `.toggleClass(key: string, state?: boolean)`

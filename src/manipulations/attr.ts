@@ -25,7 +25,7 @@ export function attr(param?: any, value?: any): any {
         }
         return element;
     } else if (typeof param === 'string') {
-        element.getAttribute(parseAttrValue(param));
+        return element.getAttribute(param);
     } else {
         const attr = {};
         for (const eachAttr of element.attributes) {

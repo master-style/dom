@@ -1,13 +1,17 @@
 import { ListenerOptions } from './listener-options.interface';
 import { off } from './off';
 
-export function on(typeSet: string, handle: any, option?: ListenerOptions);
-export function on(typeSet: string, factorSelector: any, handle: any, option?: ListenerOptions) {
+export function on(typeSet: string, handle: Function, option?: ListenerOptions);
+export function on<T extends Element>(typeSet: string, factorSelectorOrHandle: string | T, handle?: Function, option?: ListenerOptions);
+export function on<T extends Element>(typeSet: string, factorSelectorOrHandle: string | T | Function, handle?: Function | ListenerOptions, option?: ListenerOptions) {
     const target = this;
-    if (typeof factorSelector === 'function') {
-        option = handle;
-        handle = factorSelector;
-        factorSelector = null;
+    let factorSelector: string | T;
+    if (typeof factorSelectorOrHandle === 'function') {
+        option = (handle as any);
+        handle = factorSelectorOrHandle;
+        factorSelectorOrHandle = null;
+    } else {
+        factorSelector = factorSelectorOrHandle;
     }
     target.listeners = target.listeners || [];
     const listen = function (event: any) {
@@ -29,7 +33,7 @@ export function on(typeSet: string, factorSelector: any, handle: any, option?: L
         if (option && option.once) off.call(target, typeSet, factorSelector, handle, option);
         let detail = event.detail;
         detail = Array.isArray(detail) ? detail : [detail];
-        if (handle) handle.call($thisArg, event, ...detail);
+        if (handle) (handle as any).call($thisArg, event, ...detail);
     };
     for (const eachTypeSet of typeSet.split(' ')) {
         const splits = eachTypeSet.split('.');
